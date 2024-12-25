@@ -1,51 +1,40 @@
+Markdown
 
+# Python App Deployment on Kubernetes
 
 This project demonstrates how to deploy a Python application on a Kubernetes cluster using Docker, Kubernetes YAML files, and Jenkins for CI/CD automation.
-Project Overview
+
+## Project Overview
 
 The project includes:
 
-    A Python script (app.py).
-    A Dockerfile to containerize the application.
-    Kubernetes YAML files for deployment, service, and horizontal pod autoscaling.
-    A Jenkins pipeline script for automating the build and deployment process.
+- A Python script (`app.py`).
+- A Dockerfile to containerize the application.
+- Kubernetes YAML files for deployment, service, and horizontal pod autoscaling.
+- A Jenkins pipeline script for automating the build and deployment process.
 
-Prerequisites
+## Prerequisites
 
-    AWS Free Tier account with an EC2 instance.
-    Minikube or any Kubernetes cluster.
-    Docker installed on the system.
-    Jenkins set up for CI/CD.
-    Git installed on the system.Python App Deployment on Kubernetes
+- AWS Free Tier account with an EC2 instance.
+- Minikube or any Kubernetes cluster.
+- Docker installed on the system.
+- Jenkins set up for CI/CD.
+- Git installed on the system.
 
-This project demonstrates how to deploy a Python application on a Kubernetes cluster using Docker, Kubernetes YAML files, and Jenkins for CI/CD automation.
-Project Overview
+## Steps to Set Up the Project
 
-The project includes:
+### 1. Python Script
 
-    A Python script (app.py).
-    A Dockerfile to containerize the application.
-    Kubernetes YAML files for deployment, service, and horizontal pod autoscaling.
-    A Jenkins pipeline script for automating the build and deployment process.
+Save the following Python script as `app.py`:
 
-Prerequisites
-
-    AWS Free Tier account with an EC2 instance.
-    Minikube or any Kubernetes cluster.
-    Docker installed on the system.
-    Jenkins set up for CI/CD.
-    Git installed on the system.
-
-    Steps to Set Up the Project
-1. Python Script
-
-Save the following Python script as app.py:
-
+```python
 # app.py
 print("Hello, Kubernetes!")
+
 2. Dockerfile
 
 Create a Dockerfile to containerize the Python application:
+Dockerfile
 
 FROM python:3.7-slim
 WORKDIR /app
@@ -54,6 +43,7 @@ CMD ["python", "app.py"]
 
 3. Kubernetes YAML Files
 Deployment
+YAML
 
 apiVersion: apps/v1
 kind: Deployment
@@ -76,6 +66,7 @@ spec:
         - containerPort: 5000
 
 Service
+YAML
 
 apiVersion: v1
 kind: Service
@@ -91,6 +82,7 @@ spec:
   type: LoadBalancer
 
 Horizontal Pod Autoscaler
+YAML
 
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -114,6 +106,7 @@ spec:
 4. Jenkins Pipeline Script
 
 Automate the build and deployment process with the following Jenkins pipeline script:
+Groovy
 
 pipeline {
     agent any
@@ -159,14 +152,36 @@ pipeline {
     }
 }
 
+1 vulnerability detected
+
 Steps to Deploy
 
-    Clone this repository: git clone https://github.com/your-username/your-repository.git cd your-repository
+    Clone this repository:
 
-    Build the Docker image: docker build -t <your-docker-image>:<build-number> .
+bash
 
-    Push the Docker image to a registry: docker push <your-docker-image>:<build-number>
+git clone https://github.com/your-username/your-repository.git
+cd your-repository
 
-    Apply the Kubernetes YAML files: kubectl apply -f deployment.yaml kubectl apply -f service.yaml kubectl apply -f hpa.yaml
+    Build the Docker image:
 
-    Verify the deployment: kubectl get pods kubectl get svc
+docker build -t <your-docker-image>:<build-number> .
+
+    Push the Docker image to a registry:
+
+docker push <your-docker-image>:<build-number>
+
+    Apply the Kubernetes YAML files:
+
+bash
+
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl apply -f hpa.yaml
+
+    Verify the deployment:
+
+bash
+
+kubectl get pods
+kubectl get svc
